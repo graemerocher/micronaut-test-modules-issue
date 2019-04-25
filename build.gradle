@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.javamodularity.moduleplugin' version '1.5.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor 'io.micronaut:micronaut-inject-java:1.1.0'
+
+    implementation 'io.micronaut:micronaut-inject:1.1.0'
+
+    testAnnotationProcessor 'io.micronaut:micronaut-inject-java:1.1.0'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.4.2'
+    testImplementation 'io.micronaut.test:micronaut-test-junit5:1.0.2'
+    testImplementation 'io.micronaut:micronaut-inject:1.1.0'
+
+    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.4.2'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+}
+
+patchModules.config = [
+    'java.annotation=jsr305-3.0.2.jar'
+]
+
+mainClassName = "$moduleName/foo.Main"
