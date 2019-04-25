@@ -1,0 +1,1 @@
+# micronaut-test-modules-issue
